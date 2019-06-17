@@ -2,14 +2,21 @@
 #### DEPENDENCIES ####
 ######################
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/setup.typoscript">
-
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yoast_news/Configuration/TypoScript/setup.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yoast_news/Configuration/TSconfig/Page.tsconfig">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:artmediagallery9/Configuration/TypoScript/form_setup.typoscript">
 
 ##############
 #### PAGE ####
 ##############
 page {
+    includeCSSLibs {
+        googlewebfont = https://fonts.googleapis.com/css?family=Exo+2:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i
+    }
+
     includeCSS {
         theme = EXT:artmediagallery9/Resources/Public/Scss/Theme/theme.scss
+        gallery_layout = EXT:artmediagallery9/Resources/Public/Css/gallery.css
     }
 
     includeJSLibs {
@@ -26,5 +33,278 @@ page {
 
     includeJSFooter {
         artmediagallery9_scripts = EXT:artmediagallery9/Resources/Public/JavaScript/Dist/scripts.js
+        gallery_scripts = EXT:artmediagallery9/Resources/Public/JavaScript/Dist/smallmenu.js
+    }
+}
+
+################################
+#### ADDED BY EDUARDO FRANK ####
+################################
+config.admPanel = 0
+config.contentObjectExceptionHandler = 0
+config.absRefPrefix = /
+
+#### MENU SWITCH TO GALLERY ###
+lib.myswitch = TEXT
+lib.myswitch.value = 1
+
+lib.switchstyle = TEXT
+lib.switchstyle.value = /typo3conf/ext/artmediagallery9/Resources/Public/Images/studio.svg
+
+#### SMALL LOGO IN HEADER ###
+lib.sm-logo = TEXT
+lib.sm-logo.value = /typo3conf/ext/artmediagallery9/Resources/Public/Images/gallery.svg
+
+#### FORM CONFIGURATION ###
+#plugin.tx_form.settings.yamlConfigurations.100 = EXT:artmediagallery9/Configuration/Yaml/FormSetup.yaml
+#module.tx_form.settings.yamlConfigurations.100 = EXT:artmediagallery9/Configuration/Yaml/FormSetup.yaml
+
+
+#### NEWS ####
+#plugin.tx_news.features.requireCHashArgumentForActionArguments  = 0
+config.recordLinks.tx_news {
+typolink {
+parameter.stdWrap.cObject = CONTENT 
+parameter.stdWrap.cObject { 
+table = sys_category 
+select { 
+pidInList = 31
+# pid der Kategorien 
+max = 1
+selectFields = sys_category.single_pid AS detailPid 
+join = sys_category_record_mm ON sys_category_record_mm.uid_local = sys_category.uid 
+where = sys_category_record_mm.tablenames='tx_news_domain_model_news' AND sys_category_record_mm.uid_foreign = { field: uid }
+where.insertData = 1 
+andWhere.stdWrap.intVal = 1 
+andWhere.stdWrap.stripHtml = 1 
+} 
+renderObj = TEXT 
+renderObj.field = detailPid 
+renderObj.wrap = | 
+}
+additionalParams.data = field:uid
+additionalParams.wrap = &tx_news_pi1[news]=|
+useCacheHash = 0
+}
+}
+
+#### SEO CONFIGURATION ###
+plugin.tx_seo.config {
+  xmlSitemap {
+    sitemaps {
+      exhibit {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 96
+          recursive = 2
+          url {
+            pageId = 22
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      statement {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 94
+          recursive = 2
+          url {
+            pageId = 25
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      pr {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 95
+          recursive = 2
+          url {
+            pageId = 24
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      cv {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 93
+          recursive = 2
+          url {
+            pageId = 30
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      artists {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 92
+          recursive = 2
+          url {
+            pageId = 23
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      blog {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 29
+          recursive = 2
+          url {
+            pageId = 33
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+      offgallery {
+        provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+        config {
+          table = tx_news_domain_model_news
+          sortField = sorting
+          lastModifiedField = tstamp
+          pid = 91
+          recursive = 2
+          url {
+            pageId = 27
+            fieldToParameterMap {
+              uid = tx_news_pi1[news]
+            }
+            additionalGetParameters {
+              tx_news_pi1.controller = News
+              tx_news_pi1.action = detail
+            }
+            useCacheHash = 1
+          }
+        }
+      }
+    }
+  }
+}
+
+#### REDIRECTION FOR DETAIL PAGES WHEN CALLED ALONE ###
+[globalVar = TSFE:id=22]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,13,404
+[global]
+
+[globalVar = TSFE:id=23]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,12,404
+[global]
+
+[globalVar = TSFE:id=24]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,13,404
+[global]
+
+[globalVar = TSFE:id=25]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,13,404
+[global]
+
+[globalVar = TSFE:id=27]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,14,404
+[global]
+
+[globalVar = TSFE:id=28]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,12,404
+[global]
+
+[globalVar = TSFE:id=30]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,12,404
+[global]
+
+[globalVar = TSFE:id=33]
+     plugin.tx_news.settings.detail.errorHandling = redirectToPage,15,404
+[global]
+
+
+page {
+    10 = FLUIDTEMPLATE
+    10 {
+	dataProcessing {
+                30 {
+                special = rootline
+                special.range = 1|-1
+                includeNotInMenu = 1
+                as = breadcrumb
+                if {
+                    value = {$page.theme.breadcrumb.enableLevel}
+                    value {
+                        insertData = 1
+                        prioriCalc = 1
+                        stdWrap.wrap = |-1
+                    }
+                    isGreaterThan {
+                        data = level
+                    }
+                }
+                dataProcessing {
+                    10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                    10 {
+                        references.fieldName = nav_icon
+                        as = icon
+                    }
+                }
+            }
+        }
     }
 }

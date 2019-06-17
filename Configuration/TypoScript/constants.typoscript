@@ -9,12 +9,11 @@
 ############
 page {
     logo {
-        file = EXT:artmediagallery9/Resources/Public/Images/logo.svg
-        fileInverted = EXT:artmediagallery9/Resources/Public/Images/logo-inverted.svg
-        height = 52
-        width = 192
-        alt = artmediaGallery9
-        linktitle = artmediaGallery9
+        file = EXT:artmediagallery9/Resources/Public/Images/logo_gallery.svg
+        height = 113 
+        width = 77
+        alt = Artmedia Gallery
+        linktitle = Artmedia Gallery
     }
     favicon {
         file = EXT:artmediagallery9/Resources/Public/Icons/favicon.ico
@@ -26,6 +25,14 @@ page {
     }
 }
 
+################################
+### BOOTSTRAP SCSS CONSTANTS ###
+################################
+plugin.bootstrap_package.settings.scss {
+     grid-float-breakpoint = 9999px
+#    primary = #eb3e4a
+#    secondary = #013859
+}
 
 ##################
 ### EXTENSIONS ###
@@ -58,3 +65,19 @@ plugin.bootstrap_package.settings.scss {
     primary = #eb3e4a
     secondary = #013859
 }
+
+################################
+#### ADDED BY EDUARDO FRANK ####
+################################
+plugin.tx_felogin_pi1.storagePid = 0
+plugin.tx_news.view.twb.templateRootPath = EXT:artmediagallery9/Resources/Private/Templates/Styles/Twb/Templates
+plugin.tx_news.view.twb.partialRootPath = EXT:artmediagallery9/Resources/Private/Templates/Styles/Twb/Partials/
+plugin.tx_news.view.twb.layoutRootPath = EXT:artmediagallery9/Resources/Private/Templates/Styles/Twb/Layouts/
+page.includePath.icons = EXT:artmediagallery9/Resources/Public/Icons/
+styles.content.defaultHeaderType = 3
+page.theme.news.list.maxWInText = 0
+plugin.t3colorbox.slideshowAuto = true
+page.preloader.enable = 0
+
+page.theme.meta.enable = 0
+page.theme.socialmedia.enable = 0
