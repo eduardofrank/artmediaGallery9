@@ -42,7 +42,6 @@ page {
 ################################
 config.admPanel = 0
 config.contentObjectExceptionHandler = 0
-config.absRefPrefix = /
 
 #### MENU SWITCH TO GALLERY ###
 lib.myswitch = TEXT
