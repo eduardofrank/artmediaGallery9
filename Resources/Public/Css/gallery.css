@@ -2,7 +2,10 @@ html {
   background-color:#fff;
 }
 
-body {
+body, .body-bg {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   margin:0;
   padding:0;
   background-color:#fff;
@@ -29,6 +32,14 @@ a:focus {
   text-decoration: none;
 }
 
+img {
+  color: transparent;
+}
+
+figure .caption {
+  display:none;
+}
+
 #p33 a:hover,
 #p33 a:focus {
   color: #eee;
@@ -37,6 +48,14 @@ a:focus {
 
 #p23 a {
   text-decoration: none;
+}
+
+/* centering of text in 404 page */
+
+#p98 .frame-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /*************************/
@@ -393,6 +412,10 @@ a.nav-link:hover > .nav-link-text {
     background-color: transparent;
 }
 
+#p64 .breadcrumb {
+    display: none;
+}
+
 /** END OF BREADCRUMB MENU  **/
 
 /*************************/
@@ -630,6 +653,11 @@ a:focus {
 /*** Less then 480  ***/
 
 @media (max-width: 479.9px) {
+.frame {
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -698,7 +726,12 @@ h4 {
 
 /*** Greater than 480, less then 768 ***/
 @media (min-width: 480px) and (max-width: 767.9px) {
- .news-single img {
+.frame {
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+.news-single img {
     vertical-align: middle;
     border-style: none;
     width: 100%;
@@ -960,10 +993,15 @@ h4 {
 /********* FOOTER ********/
 /*************************/
 
+#page-footer {
+    margin-top:auto;
+}
+
 .footer-section-meta {
     text-align: left;
     margin-bottom: 0;
 }
+
 .footer-section-meta .frame {
     padding-top: 8px!important;
     padding-bottom: 8px!important;
